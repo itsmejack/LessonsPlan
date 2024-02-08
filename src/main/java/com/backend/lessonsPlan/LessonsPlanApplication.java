@@ -1,4 +1,4 @@
-package Main;
+package com.backend.lessonsPlan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
