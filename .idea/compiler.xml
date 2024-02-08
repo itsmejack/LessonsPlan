@@ -9,10 +9,8 @@
         <module name="lessonsPlan" />
       </profile>
     </annotationProcessing>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="lessonsPlan" options="-parameters" />
-    </option>
+    <bytecodeTargetLevel>
+      <module name="lessonsPlan" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
