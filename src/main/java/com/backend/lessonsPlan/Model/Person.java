@@ -10,7 +10,7 @@ public class Person {
     private Set<Interval> freeIntervals = new HashSet<>();
     private Set<Lesson> lessons = new HashSet<>();
 
-    private String name;
+    protected String name;
 
     public void printInformation() {
         freeIntervals.forEach(Interval::printInformation);
