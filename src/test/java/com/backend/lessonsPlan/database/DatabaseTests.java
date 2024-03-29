@@ -17,9 +17,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -61,6 +64,26 @@ public class DatabaseTests {
         assertInternal(teacherEntity, teacherEntity.getName(), teacherRepository);
     }
 
+    @Test
+    public void assertStudentIntervalRelation() {
+        StudentEntity student = TestDataFactory.createStudent();
+        IntervalEntity interval = TestDataFactory.createInterval();
+
+        studentRepository.save(student);
+        intervalRepository.save(interval);
+
+        student.setFreeIntervals(Collections.singleton(interval));
+        interval.setStudent(student);
+
+        studentRepository.save(student);
+        intervalRepository.save(interval);
+
+         StudentEntity resultStudent = studentRepository.findById(student.getName()).orElse(null);
+         IntervalEntity resultInterval = intervalRepository.findById(interval.getId()).orElse(null);
+
+        assertEquals(student, resultStudent);
+        assertEquals(interval, resultInterval);
+    }
     private void assertInternal(Object objectEntity, Object id, CrudRepository repository) {
         repository.save(objectEntity);
         Optional<?> result = repository.findById(id);

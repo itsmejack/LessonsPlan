@@ -1,8 +1,6 @@
 package com.backend.lessonsPlan.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,5 +18,6 @@ public class StudentEntity {
     @Id
     private String name;
     private Set<String> lessons;
-    private Set<String> freeIntervals;
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    private Set<IntervalEntity> freeIntervals;
 }

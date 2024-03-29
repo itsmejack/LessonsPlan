@@ -7,6 +7,8 @@ import com.backend.lessonsPlan.Entities.TeacherEntity;
 import com.backend.lessonsPlan.Model.Day;
 import com.backend.lessonsPlan.Model.NumberOfLesson;
 
+import java.util.HashSet;
+
 public class TestDataFactory {
     public static IntervalEntity createInterval() {
         return IntervalEntity.builder().id(1L).intervalDay(Day.MON).numberOfLesson(NumberOfLesson.LESSON_1).build();
@@ -17,7 +19,7 @@ public class TestDataFactory {
     }
 
     public static StudentEntity createStudent() {
-        return StudentEntity.builder().name("name").build();
+        return StudentEntity.builder().name("name").freeIntervals(new HashSet<>()).build();
     }
 
     public static TeacherEntity createTeacher() {
