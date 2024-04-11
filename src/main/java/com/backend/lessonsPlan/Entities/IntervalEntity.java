@@ -19,6 +19,7 @@ public class IntervalEntity {
     private Long id;
     private Day intervalDay;
     private NumberOfLesson numberOfLesson;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "name")

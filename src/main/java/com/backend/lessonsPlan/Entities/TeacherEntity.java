@@ -1,8 +1,6 @@
 package com.backend.lessonsPlan.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +17,8 @@ import java.util.Set;
 public class TeacherEntity {
     @Id
     private String name;
-    private Set<String> lessons;
-    private Set<String> freeIntervals;
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.EAGER)
+    private Set<LessonEntity> lessons;
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.EAGER)
+    private Set<IntervalEntity> freeIntervals;
 }

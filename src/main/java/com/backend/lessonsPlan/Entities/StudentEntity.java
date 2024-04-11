@@ -17,7 +17,8 @@ import java.util.Set;
 public class StudentEntity {
     @Id
     private String name;
-    private Set<String> lessons;
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    private Set<LessonEntity> lessons;
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     private Set<IntervalEntity> freeIntervals;
 }
